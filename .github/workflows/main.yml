@@ -16,8 +16,8 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y cabextract
     - name: Build image
-      run: make ${{ github.ref }}
+      run: make ${GITHUB_REF##*/}
     - name: Push image
       run: |
         docker login --username connorworley --password '${{ secrets.DOCKER_HUB_PASSWORD }}'
-        docker push firstrustcompetition/cross:${{ github.ref }}
+        docker push firstrustcompetition/cross:${GITHUB_REF##*/}
