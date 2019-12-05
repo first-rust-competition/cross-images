@@ -2,7 +2,7 @@
 Custom images to build for the roboRIO with [cross](https://github.com/rust-embedded/cross)
 
 ## Usage
-Supply `firstrustcompetition/cross:IMAGE_VERSION` as a custom image to cross.
+Supply `firstrustcompetition/cross:FRC_UPDATE_SUITE_VERSION` as a custom image to cross.
 
 For example, add the following to your `Cargo.toml`:
 ```toml
@@ -12,5 +12,5 @@ image = "firstrustcompetition/cross:2019.1.0"
 Then build: `cross build --target arm-unknown-linux-gnueabi`.
 
 ## Generating new images
-Create a new release of this repo using a roboRIO image version as the tag.
-CI will automatically build and push the image to Docker Hub.
+Create a new release of this repo using an FRC Update Suite version as the tag.
+CI will automatically download the suite, extract the roboRIO image, build a cross image, and push to Docker Hub.
