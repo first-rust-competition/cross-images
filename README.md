@@ -4,7 +4,7 @@ Custom images to build for the roboRIO with [cross](https://github.com/rust-embe
 ## Usage
 Supply `firstrustcompetition/cross:FRC_UPDATE_SUITE_VERSION` as a custom image to cross.
 
-For example, add the following to your `Cargo.toml`:
+For example, add the following to your `Cross.toml`:
 ```toml
 [target.arm-unknown-linux-gnueabi]
 image = "firstrustcompetition/cross:2019.1.0"
