@@ -19,10 +19,8 @@ jobs:
     - name: Build image
       run: |
         ./download-rio-image.sh ${GITHUB_REF##*/}
-        docker build -t firstrustcompetition/cross:${GITHUB_REF##*/} .
+        docker build -t firstrustcompetition/cross:$(<DOCKER_TAG) .
     - name: Push image
       run: |
         docker login --username connorworley --password '${{ secrets.DOCKER_HUB_PASSWORD }}'
-        docker push firstrustcompetition/cross:${GITHUB_REF##*/}
-        docker tag firstrustcompetition/cross:${GITHUB_REF##*/} firstrustcompetition/cross:latest
-        docker push firstrustcompetition/cross:latest
+        docker push firstrustcompetition/cross:$(<DOCKER_TAG)

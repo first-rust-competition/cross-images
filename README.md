@@ -2,12 +2,12 @@
 Custom images to build for the roboRIO with [cross](https://github.com/rust-embedded/cross)
 
 ## Usage
-Supply `firstrustcompetition/cross:VERSION_TUPLE` as a custom image to cross. `firstrustcompetition/cross:latest` is also provided for convenience.
+Supply `firstrustcompetition/cross:IMAGE_VERSION` as a custom image to cross.
 
 For example, add the following to your `Cross.toml`:
 ```toml
 [target.arm-unknown-linux-gnueabi]
-image = "firstrustcompetition/cross:latest"
+image = "firstrustcompetition/cross:2020_v10"
 ```
 Then build: `cross build --target arm-unknown-linux-gnueabi`.
 

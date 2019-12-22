@@ -34,4 +34,5 @@ INNER_ZIP=$(find "$OUTER_CAB_DIR" -type f -exec du {} + | sort -n | tail -n 1 | 
 unzip -q "$INNER_ZIP" -d "$INNER_ZIP_DIR"
 unzip -q "$INNER_ZIP_DIR/*.zip" -d "$INNER_ZIP_DIR"
 
+basename $(ls "$INNER_ZIP_DIR/"*.zip) | cut -c 9- | rev | cut -c 5- | rev > DOCKER_TAG
 cp "$INNER_ZIP_DIR/systemimage.tar.gz" .
