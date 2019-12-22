@@ -21,11 +21,11 @@ GAME_TOOLS_VERSION=$(echo "$VERSION_TUPLE" | cut -d _ -f 2)
 UTILITIES_VERSION=$(echo "$VERSION_TUPLE" | cut -d _ -f 3)
 
 FEED_URL="https://download.ni.com/support/nipkg/products/ni-f/ni-frc-$YEAR-game-tools/$GAME_TOOLS_VERSION/released"
-UTILITIES_FILENAME=$(wget -O - "$FEED_URL/Packages" | grep "ni-frc-$YEAR-utilities_$UTILITIES_VERSION.*\.nipkg" | cut -d ' ' -f 2- | tr -d '\r')
+UTILITIES_FILENAME=$(wget -q -O - "$FEED_URL/Packages" | grep "ni-frc-$YEAR-utilities_$UTILITIES_VERSION.*\.nipkg" | cut -d ' ' -f 2- | tr -d '\r')
 
-wget -O - "$FEED_URL/$UTILITIES_FILENAME" | tar -xf - "$UPDATE_SUITE_TAR"
+wget -q -O - "$FEED_URL/$UTILITIES_FILENAME" | bsdtar -xf - "$UPDATE_SUITE_TAR"
 
-tar -zxf "$UPDATE_SUITE_TAR" -C "$UPDATE_SUITE_DIR"
+bsdtar -zxf "$UPDATE_SUITE_TAR" -C "$UPDATE_SUITE_DIR"
 
 OUTER_CAB=$(find "$UPDATE_SUITE_DIR" -path '*/FRC_U00/*.cab' -exec du {} + | sort -n | tail -n 1 | awk '{$1=""; print substr($0, 2)}')
 cabextract -q "$OUTER_CAB" -d "$OUTER_CAB_DIR"
