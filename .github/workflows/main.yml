@@ -17,8 +17,12 @@ jobs:
         sudo apt-get install -y cabextract
         docker run --rm --privileged hypriot/qemu-register
     - name: Build image
-      run: make ${GITHUB_REF##*/}
+      run: |
+        ./download-rio-image.sh ${GITHUB_REF##*/}
+        docker build -t firstrustcompetition/cross:${GITHUB_REF##*/} .
     - name: Push image
       run: |
         docker login --username connorworley --password '${{ secrets.DOCKER_HUB_PASSWORD }}'
         docker push firstrustcompetition/cross:${GITHUB_REF##*/}
+        docker tag firstrustcompetition/cross:${GITHUB_REF##*/} firstrustcompetition/cross:latest
+        docker push firstrustcompetition/cross:latest
