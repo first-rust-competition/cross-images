@@ -23,7 +23,7 @@ UTILITIES_VERSION=$(echo "$VERSION_TUPLE" | cut -d _ -f 3)
 FEED_URL="https://download.ni.com/support/nipkg/products/ni-f/ni-frc-$YEAR-game-tools/$GAME_TOOLS_VERSION/released"
 UTILITIES_FILENAME=$(wget -O - "$FEED_URL/Packages" | grep "ni-frc-$YEAR-utilities_$UTILITIES_VERSION.*\.nipkg" | cut -d ' ' -f 2- | tr -d '\r')
 
-wget -O - "$FEED_URL/$UTILITIES_FILENAME" | tar -zxf - "$UPDATE_SUITE_TAR"
+wget -O - "$FEED_URL/$UTILITIES_FILENAME" | tar -xf - "$UPDATE_SUITE_TAR"
 
 tar -zxf "$UPDATE_SUITE_TAR" -C "$UPDATE_SUITE_DIR"
 
