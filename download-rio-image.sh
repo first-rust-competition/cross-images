@@ -3,12 +3,10 @@ set -euxo pipefail
 
 UPDATE_SUITE_DIR=$(mktemp -d)
 OUTER_CAB_DIR=$(mktemp -d)
-INNER_ZIP_DIR=$(mktemp -d)
 
 function cleanup {
     rm -rf "$UPDATE_SUITE_DIR"
     rm -rf "$OUTER_CAB_DIR"
-    rm -rf "$INNER_ZIP_DIR"
 }
 
 trap cleanup EXIT
